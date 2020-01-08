@@ -78,7 +78,6 @@ function debriefPizza(pizza){
 
 function debriefPizzas(pizzas){
   if(!pizzas || pizzas.length < 1) return false; 
-  console.log("PIZZAS", pizzas);
   return pizzas.map((item) => debriefPizza(item));
   // return {
   //   ...pizza,
