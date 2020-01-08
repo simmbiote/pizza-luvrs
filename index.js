@@ -2,10 +2,22 @@ const Hapi = require('@hapi/hapi')
 
 const plugins = require('./plugins')
 const routes = require('./routes')
+const CatboxRedis = require('@hapi/catbox-redis');
 
-async function startServer () {
+async function startServer() {
   const server = Hapi.Server({
-    port: process.env.PORT || 3000
+    port: 3000, ///process.env.PORT || 3000
+    cache: [{
+      name: 'redis',
+      provider: {
+        constructor: CatboxRedis,
+        options: {
+          partition: 'tfg-next-cache-cluster',
+          host: 'tfg-next-cache-cluster.cgjfhu.0001.use2.cache.amazonaws.com',
+          port: 6379
+        }
+      }
+    }],
   })
 
   await plugins.register(server)

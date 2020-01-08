@@ -170,8 +170,8 @@
         "AssociatePublicIpAddress": true,
         "ImageId": "ami-047bbf678bc5ccab5",
         "InstanceType": "t2.micro",
-        "KeyName": "tgfg-next-aws-keys",
-        "IamInstanceProfile": "tfgnext-ec2-role",
+        "KeyName": "pizza-keys",
+        "IamInstanceProfile": "pizza-ec2-role",
         "SecurityGroups": [
           {
             "Ref": "sgpizzaec2sg"
@@ -325,13 +325,19 @@
         }
       }
     },
-    "sgrdslaunchwizard": {  
+    "sgrdslaunchwizard": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
         "GroupDescription": "Created from the RDS Management Console",
         "VpcId": {
           "Ref": "vpc0d9ce469"
         }
+      }
+    },
+    "dbsgdefault": {
+      "Type": "AWS::RDS::DBSecurityGroup",
+      "Properties": {
+        "GroupDescription": "default"
       }
     },
     "snspolicydynamodb": {
